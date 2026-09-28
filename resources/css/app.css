@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+@theme {
+    --font-sans: "Poppins", sans-serif;
+
+    --color-navy: #0B2545;
+    --color-gold: #D4A017;
+    --color-success: #16A34A;
+    --color-danger: #DC2626;
+}
