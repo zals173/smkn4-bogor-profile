@@ -10,6 +10,7 @@ use App\Observers\ArtikelObserver;
 use App\Observers\GaleriObserver;
 use App\Observers\JurusanObserver;
 use App\Observers\ProdukObserver;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Carbon::setLocale(config('app.locale'));
+
         Jurusan::observe(JurusanObserver::class);
         Artikel::observe(ArtikelObserver::class);
         Galeri::observe(GaleriObserver::class);

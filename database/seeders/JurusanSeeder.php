@@ -18,7 +18,7 @@ class JurusanSeeder extends Seeder
                 'Jurusan Pengembangan Perangkat Lunak dan Gim (PPLG) dirancang untuk mencetak tenaga profesional di bidang rekayasa perangkat lunak dan pengembangan permainan interaktif. Kurikulum kami disusun berkolaborasi dengan industri teknologi terkemuka untuk memastikan lulusan memiliki keterampilan teknis yang relevan dengan kebutuhan pasar global.',
                 'Siswa akan mempelajari siklus lengkap pengembangan perangkat lunak (SDLC), mulai dari analisis kebutuhan, perancangan antarmuka (UI/UX), pengkodean menggunakan berbagai bahasa pemrograman modern, hingga pengujian dan penerapan aplikasi berbasis web, mobile, dan desktop.',
             ],
-            'kompetensi' => ['Pemrograman Web', 'Pemrograman Mobile', 'Pemrograman Mobile', 'Pengembangan Game', 'UI/UX Design'],
+            'kompetensi' => ['Pemrograman Web', 'Pemrograman Mobile', 'Pengembangan Game', 'UI/UX Design'],
             'prospek' => ['Web Developer', 'Mobile Developer', 'Game Developer', 'QA Tester', 'UI/UX Designer'],
             'fasilitas' => [
                 ['badge' => 'LAB', 'judul' => 'Lab Pemrograman', 'deskripsi' => 'Dilengkapi dengan spesifikasi komputer tinggi (Core i7/Ryzen 7, RAM 16GB) untuk mendukung proses kompilasi aplikasi kompleks dengan lancar.', 'gambar' => 'jurusan-pplg.jpg'],

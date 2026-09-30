@@ -19,23 +19,23 @@
 </div>
 
 @if (session('success'))
-    <div id="alert-success" class="bg-success/10 border border-success/30 text-success text-sm rounded-lg px-4 py-3 mb-6 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-        </svg>
-        {{ session('success') }}
-    </div>
+<div id="alert-success" class="bg-success/10 border border-success/30 text-success text-sm rounded-lg px-4 py-3 mb-6 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    {{ session('success') }}
+</div>
 @endif
 
 @if ($errors->any())
-    <div class="bg-danger/10 border border-danger/30 text-danger text-sm rounded-lg px-4 py-3 mb-6">
-        <p class="font-semibold mb-1">Periksa kembali data yang diisi:</p>
-        <ul class="list-disc list-inside space-y-0.5">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="bg-danger/10 border border-danger/30 text-danger text-sm rounded-lg px-4 py-3 mb-6">
+    <p class="font-semibold mb-1">Periksa kembali data yang diisi:</p>
+    <ul class="list-disc list-inside space-y-0.5">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="bg-white rounded-lg shadow-sm">
@@ -47,7 +47,7 @@
                 <path stroke-linecap="round" d="M21 21l-4.35-4.35" />
             </svg>
             <input type="text" name="cari" value="{{ $cari }}" placeholder="Cari artikel..."
-                   class="border border-gray-300 rounded-lg pl-9 pr-4 py-2 text-sm w-56 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                class="border border-gray-300 rounded-lg pl-9 pr-4 py-2 text-sm w-56 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
         </form>
     </div>
 
@@ -57,49 +57,51 @@
                 <tr class="border-b border-gray-100 text-gray-500 text-xs uppercase tracking-wide">
                     <th class="text-left px-5 py-3 font-semibold">Gambar</th>
                     <th class="text-left px-5 py-3 font-semibold">Judul</th>
-                    <th class="text-left px-5 py-3 font-semibold">Kategori</th>
+                    <th class="text-center px-5 py-3 font-semibold">Kategori</th>
                     <th class="text-left px-5 py-3 font-semibold">Status</th>
-                    <th class="text-left px-5 py-3 font-semibold">Views</th>
+                    <th class="text-center px-5 py-3 font-semibold">Tayangan</th>
+                    <th class="text-center px-5 py-3 font-semibold">Suka</th>
                     <th class="text-left px-5 py-3 font-semibold">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($artikel as $item)
-                    <tr class="border-b border-gray-50 hover:bg-gray-50/50 transition">
-                        <td class="px-5 py-3">
-                            <div class="bg-navy/5 rounded h-12 w-16 overflow-hidden">
-                                @if ($item->gambar)
-                                    <img src="{{ str_contains($item->gambar, '/') ? asset('storage/' . $item->gambar) : asset('images/' . $item->gambar) }}" alt="{{ $item->judul }}" class="h-full w-full object-cover">
-                                @endif
-                            </div>
-                        </td>
-                        <td class="px-5 py-3 font-medium text-navy max-w-xs">{{ $item->judul }}</td>
-                        <td class="px-5 py-3">
-                            <span class="{{ $item->kategori === 'Prestasi' ? 'bg-success/10 text-success' : ($item->kategori === 'Kegiatan' ? 'bg-blue-100 text-blue-600' : 'bg-danger/10 text-danger') }} text-xs font-semibold px-2.5 py-1 rounded">{{ $item->kategori }}</span>
-                        </td>
-                        <td class="px-5 py-3">
-                            <span class="{{ $item->status === 'publish' ? 'bg-success/10 text-success' : 'bg-gray-100 text-gray-500' }} text-xs font-semibold px-2.5 py-1 rounded uppercase">{{ $item->status }}</span>
-                        </td>
-                        <td class="px-5 py-3 text-gray-500">{{ $item->views }}</td>
-                        <td class="px-5 py-3">
-                            <div class="flex items-center gap-3">
-                                <button type="button" onclick='bukaModalEdit(@json($item))' class="text-navy hover:text-gold transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </button>
-                                <button type="button" onclick="bukaModalHapus({{ $item->id }}, '{{ $item->judul }}')" class="text-danger hover:opacity-70 transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                <tr class="border-b border-gray-50 hover:bg-gray-50/50 transition">
+                    <td class="px-5 py-3">
+                        <div class="bg-navy/5 rounded h-12 w-16 overflow-hidden">
+                            @if ($item->gambar)
+                            <img src="{{ str_contains($item->gambar, '/') ? asset('storage/' . $item->gambar) : asset('images/' . $item->gambar) }}" alt="{{ $item->judul }}" class="h-full w-full object-cover">
+                            @endif
+                        </div>
+                    </td>
+                    <td class="px-5 py-3 font-medium text-navy max-w-xs">{{ $item->judul }}</td>
+                    <td class="px-5 py-3 text-center">
+                        <span class="{{ $item->kategori === 'Prestasi' ? 'bg-success/10 text-success' : ($item->kategori === 'Kegiatan' ? 'bg-blue-100 text-blue-600' : 'bg-danger/10 text-danger') }} text-xs font-semibold px-2.5 py-1 rounded">{{ $item->kategori }}</span>
+                    </td>
+                    <td class="px-5 py-3">
+                        <span class="{{ $item->status === 'publish' ? 'bg-success/10 text-success' : 'bg-gray-100 text-gray-500' }} text-xs font-semibold px-2.5 py-1 rounded uppercase">{{ $item->status }}</span>
+                    </td>
+                    <td class="px-5 py-3 text-gray-500 text-center">{{ $item->views }}</td>
+                    <td class="px-5 py-3 text-gray-500 text-center">{{ $item->likes }}</td>
+                    <td class="px-5 py-3">
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick='bukaModalEdit(@json($item))' class="text-navy hover:text-gold transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+                            <button type="button" onclick="bukaModalHapus({{ $item->id }}, '{{ $item->judul }}')" class="text-danger hover:opacity-70 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="6" class="text-center py-12 text-gray-400">Belum ada artikel.</td>
-                    </tr>
+                <tr>
+                    <td colspan="7" class="text-center py-12 text-gray-400">Belum ada artikel.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>
@@ -129,14 +131,14 @@
             <div>
                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Judul Artikel</label>
                 <input type="text" name="judul" id="input-judul" required
-                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                    class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Kategori</label>
                     <select name="kategori" id="input-kategori" required
-                            class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                        class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
                         <option value="Prestasi">Prestasi</option>
                         <option value="Kegiatan">Kegiatan</option>
                         <option value="Pengumuman">Pengumuman</option>
@@ -145,7 +147,7 @@
                 <div>
                     <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Status</label>
                     <select name="status" id="input-status" required
-                            class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                        class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
                         <option value="draft">Draft</option>
                         <option value="publish">Publish</option>
                     </select>
@@ -155,7 +157,7 @@
             <div>
                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Ringkasan</label>
                 <textarea name="ringkasan" id="input-ringkasan" rows="2"
-                          class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy resize-none"></textarea>
+                    class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy resize-none"></textarea>
             </div>
 
             <div>
@@ -166,7 +168,7 @@
             <div>
                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Gambar Sampul</label>
                 <input type="file" name="gambar" accept="image/*"
-                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                    class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
             </div>
 
             <div class="flex gap-3 pt-2">
@@ -229,7 +231,8 @@
     function bukaModalEdit(item) {
         document.getElementById('modal-title').textContent = 'Edit Artikel';
         document.getElementById('form-artikel').action = `/admin/artikel/${item.id}`;
-        document.getElementById('method-field').innerHTML = '@method('PUT')';
+        document.getElementById('method-field').innerHTML = '@method('
+        PUT ')';
         document.getElementById('input-judul').value = item.judul ?? '';
         document.getElementById('input-kategori').value = item.kategori ?? 'Prestasi';
         document.getElementById('input-status').value = item.status ?? 'draft';
@@ -264,7 +267,7 @@
         document.getElementById('modal-hapus').classList.remove('flex');
     }
 
-    document.getElementById('form-artikel').addEventListener('submit', function () {
+    document.getElementById('form-artikel').addEventListener('submit', function() {
         if (tinymce.get('input-isi')) {
             tinymce.triggerSave();
         }
