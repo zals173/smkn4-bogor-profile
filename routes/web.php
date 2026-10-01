@@ -32,7 +32,7 @@ Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
 
 // ==================== AUTENTIKASI ADMIN ====================
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.authenticate');
+Route::post('/admin/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('admin.authenticate');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 // ==================== HALAMAN ADMIN (WAJIB LOGIN) ====================

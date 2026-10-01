@@ -27,8 +27,8 @@
 {{-- GRID PRODUK --}}
 <section class="max-w-7xl mx-auto px-6 py-16">
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach ($produk as $item)
-        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition">
+        @foreach ($produk as $index => $item)
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
 
             <div class="relative bg-gray-50 overflow-hidden">
                 <span class="absolute top-3 left-3 bg-navy text-white text-[10px] font-bold px-2 py-1 rounded uppercase z-10">{{ $item->kategori }}</span>

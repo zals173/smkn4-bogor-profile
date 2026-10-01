@@ -23,10 +23,11 @@
         </div>
     </div>
 </section>
+
 {{-- PROFIL SEKOLAH --}}
 <section class="max-w-5xl mx-auto px-6 py-16">
     <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
+        <div data-aos="fade-right">
             <span class="inline-block text-gold font-semibold text-sm uppercase tracking-wide border-b-2 border-gold pb-1 mb-3">
                 Profil Sekolah
             </span>
@@ -39,7 +40,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
             <div class="bg-navy/5 rounded-lg p-6 text-center">
                 <div class="text-navy font-bold text-3xl mb-1">2009</div>
                 <div class="text-xs text-gray-500 uppercase tracking-wide">Mulai Beroperasi</div>
@@ -59,7 +60,7 @@
 {{-- VISI & MISI --}}
 <section class="bg-gray-50 py-16">
     <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-10">
+        <div class="text-center mb-10" data-aos="fade-up">
             <span class="inline-block text-gold font-semibold text-sm uppercase tracking-wide border-b-2 border-gold pb-1 mb-3">
                 Visi & Misi
             </span>
@@ -67,7 +68,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white rounded-lg shadow-sm p-8">
+            <div class="bg-white rounded-lg shadow-sm p-8" data-aos="fade-up" data-aos-delay="0">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="bg-gold/20 rounded-full h-11 w-11 flex items-center justify-center shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -80,7 +81,7 @@
                 <p class="text-sm text-gray-600 leading-relaxed">{{ $visi }}</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-8">
+            <div class="bg-white rounded-lg shadow-sm p-8" data-aos="fade-up" data-aos-delay="150">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="bg-gold/20 rounded-full h-11 w-11 flex items-center justify-center shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -106,7 +107,7 @@
 
 {{-- EKSTRAKURIKULER --}}
 <section class="max-w-6xl mx-auto px-6 py-16">
-    <div class="text-center mb-10">
+    <div class="text-center mb-10" data-aos="fade-up">
         <span class="inline-block text-gold font-semibold text-sm uppercase tracking-wide border-b-2 border-gold pb-1 mb-3">
             Kehidupan Siswa
         </span>
@@ -117,8 +118,8 @@
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5">
-        @foreach ($ekskul as $item)
-            <div class="bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-6 text-center">
+        @foreach ($ekskul as $index => $item)
+            <div class="bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-6 text-center" data-aos="fade-up" data-aos-delay="{{ ($index % 5) * 60 }}">
                 <div class="bg-navy/5 rounded-full h-14 w-14 flex items-center justify-center mx-auto mb-3">
                     @switch($item['icon'])
                         @case('cross')

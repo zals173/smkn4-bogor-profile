@@ -29,7 +29,7 @@
 
 {{-- FILTER & SEARCH --}}
 <section class="max-w-7xl mx-auto px-6 pt-10">
-    <form method="GET" action="{{ route('artikel.index') }}" class="flex flex-col md:flex-row justify-between gap-4 mb-10">
+    <form method="GET" action="{{ route('artikel.index') }}" class="flex flex-col md:flex-row justify-between gap-4 mb-10" data-aos="fade-up">
         <div class="relative w-full md:w-80">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="7" />
@@ -60,8 +60,8 @@
 <section class="max-w-7xl mx-auto px-6 pb-20">
     @if (count($artikel) > 0)
     <div class="grid md:grid-cols-3 gap-6">
-        @foreach ($artikel as $item)
-        <a href="{{ route('artikel.show', $item->slug) }}" class="group block bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+        @foreach ($artikel as $index => $item)
+        <a href="{{ route('artikel.show', $item->slug) }}" class="group block bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
             <div class="relative overflow-hidden">
                 <span class="absolute top-3 left-3 {{ $item->kategori === 'Kegiatan' ? 'bg-blue-600' : ($item->kategori === 'Prestasi' ? 'bg-success' : 'bg-danger') }} text-white text-[10px] font-bold px-2 py-1 rounded z-10 uppercase">{{ $item->kategori }}</span>
                 <img src="{{ str_contains($item->gambar, '/') ? asset('storage/' . $item->gambar) : asset('images/' . $item->gambar) }}" alt="{{ $item->judul }}" class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105">
@@ -90,6 +90,9 @@
         </a>
         @endforeach
     </div>
+
+    {{ $artikel->links('partials.pagination') }}
+
     @else
     <div class="text-center py-20 text-gray-400">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">

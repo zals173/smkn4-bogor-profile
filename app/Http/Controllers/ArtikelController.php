@@ -16,7 +16,8 @@ class ArtikelController extends Controller
             ->when($kategori !== 'Semua', fn($q) => $q->where('kategori', $kategori))
             ->when($cari, fn($q) => $q->where('judul', 'like', "%{$cari}%"))
             ->latest()
-            ->get();
+            ->paginate(9)
+            ->withQueryString();
 
         return view('artikel.index', [
             'artikel' => $artikel,

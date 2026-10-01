@@ -28,8 +28,8 @@
 <section class="max-w-7xl mx-auto px-6 py-16">
     @if ($jurusan->count() > 0)
         <div class="grid md:grid-cols-2 gap-8">
-            @foreach ($jurusan as $item)
-            <a href="{{ route('jurusan.show', $item->slug) }}" class="group block bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
+            @foreach ($jurusan as $index => $item)
+            <a href="{{ route('jurusan.show', $item->slug) }}" class="group block bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 120 }}">
                 <div class="relative overflow-hidden">
                     <span class="absolute top-3 left-3 bg-navy text-white text-[10px] font-bold px-2 py-1 rounded z-10">{{ $item->kode }}</span>
                     <img src="{{ $item->gambar_sampul && str_contains($item->gambar_sampul, '/') ? asset('storage/' . $item->gambar_sampul) : asset('images/' . ($item->gambar_sampul ?? 'jurusan-' . $item->slug . '.jpg')) }}"
@@ -70,7 +70,7 @@
 </section>
 
 {{-- CTA MASIH BINGUNG --}}
-<section class="max-w-4xl mx-auto px-6 pb-20">
+<section class="max-w-4xl mx-auto px-6 pb-20" data-aos="fade-up">
     <div class="border-2 border-gray-100 rounded-xl text-center py-14 px-6">
         <h2 class="text-2xl font-bold text-navy mb-3">Masih Bingung Memilih Jurusan?</h2>
         <p class="text-gray-500 max-w-lg mx-auto mb-6">
